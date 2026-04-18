@@ -1,6 +1,12 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+type CookieToSet = {
+  name: string;
+  value: string;
+  options?: Parameters<NextResponse["cookies"]["set"]>[2];
+};
+
 export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
 
@@ -12,14 +18,16 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          );
+        setAll(cookiesToSet: CookieToSet[]) {
+          cookiesToSet.forEach(({ name, value }) => {
+            request.cookies.set(name, value);
+          });
+
           supabaseResponse = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          );
+
+          cookiesToSet.forEach(({ name, value, options }) => {
+            supabaseResponse.cookies.set(name, value, options);
+          });
         },
       },
     }
@@ -31,11 +39,9 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  // Public routes — always accessible
   const publicRoutes = ["/", "/login", "/signup", "/auth/callback"];
 
   if (publicRoutes.includes(pathname)) {
-    // If already logged in, redirect away from auth pages
     if (user && (pathname === "/login" || pathname === "/signup")) {
       return NextResponse.redirect(new URL("/dashboard", request.url));
     }
@@ -43,7 +49,6 @@ export async function middleware(request: NextRequest) {
     return supabaseResponse;
   }
 
-  // Protected routes — must be logged in
   if (!user) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

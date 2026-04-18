@@ -1,8 +1,16 @@
 {
+  "/auth/callback/route": "app/auth/callback/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
   "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(dashboard)/admin/page": "app/(dashboard)/admin/page.js",
+  "/(dashboard)/approvals/page": "app/(dashboard)/approvals/page.js",
+  "/(auth)/signup/page": "app/(auth)/signup/page.js",
+  "/(dashboard)/apply/page": "app/(dashboard)/apply/page.js",
+  "/(dashboard)/history/page": "app/(dashboard)/history/page.js",
+  "/(dashboard)/settings/page": "app/(dashboard)/settings/page.js",
+  "/(dashboard)/status/page": "app/(dashboard)/status/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
   "/(dashboard)/status/[id]/page": "app/(dashboard)/status/[id]/page.js",
-  "/(dashboard)/admin/page": "app/(dashboard)/admin/page.js",
-  "/(dashboard)/apply/page": "app/(dashboard)/apply/page.js",
-  "/(dashboard)/approvals/page": "app/(dashboard)/approvals/page.js"
+  "/(dashboard)/team/page": "app/(dashboard)/team/page.js"
 }
