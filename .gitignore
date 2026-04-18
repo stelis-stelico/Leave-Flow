@@ -1,5 +1,39 @@
-node_modules
-build
+# dependencies
+/node_modules
+
+# next.js
+/.next
+/out
+/.vercel
+
+# production
+/build
+
+# env files (VERY IMPORTANT)
+.env
 .env.local
-.next
-.env.example
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# macOS
+.DS_Store
+
+# windows
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# typescript
+*.tsbuildinfo
+
+# misc
+coverage/
